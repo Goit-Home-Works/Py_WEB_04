@@ -16,3 +16,16 @@ body {
 textarea {
   height: 250px;
 }
+.test {
+  color: rgba(160, 7, 137, 0.881);
+  background-color: rgba(232, 154, 10, 0.789);
+  border: 2px dotted transparent;
+  cursor: pointer;
+}
+.test:hover {
+  color: blue;
+  background-color: beige;
+  border: 2px dotted blue;
+  cursor: pointer;
+}
+
