@@ -1,6 +1,3 @@
-function getRandomHexColor() {
-  return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
-}
 
 const changeColorButton = document.querySelector('.test');
 const cards = document.querySelectorAll('.card.mb-4.rounded-3.shadow-sm');
@@ -17,10 +14,10 @@ function onClickChangeColorButton() {
   currentIndex = (currentIndex + 1) % cards.length;
   cards[currentIndex].classList.add('border-primary');
   cards1[currentIndex].classList.add( 'text-bg-primary');
-
-  
-  textElement.style.color = getRandomHexColor();
-  document.body.style.backgroundColor = getRandomHexColor();
+  const currentArticleTitle = cards1[currentIndex].querySelector('h4').textContent;
+  console.clear();
+  console.log(`current article is ${currentArticleTitle}`);
+  // alert(`current article is ${currentArticleTitle}`)
 }
 
 

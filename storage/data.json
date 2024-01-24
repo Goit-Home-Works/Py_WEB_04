@@ -1,10 +1,17 @@
-{
-  "2022-10-29 20:20:58.020261": {
-    "username": "krabaton",
-    "message": "First message"
+[
+  {
+    "username": "Siracenco Serghei",
+    "message": "I love you",
+    "current_datetime": "2024-01-24 22:22:17"
   },
-  "2022-10-29 20:21:11.812177": {
-    "username": "Krabat",
-    "message": "Second message"
+  {
+    "username": "Siracenco Sergio",
+    "message": "Ti amo",
+    "current_datetime": "2024-01-24 22:26:21"
+  },
+  {
+    "username": "Leonora Siracenco",
+    "message": "Te Iubesc",
+    "current_datetime": "2024-01-24 22:30:58"
   }
-}
+]
