@@ -49,6 +49,7 @@ class HTTPHandler(BaseHTTPRequestHandler):
             updated_file.write('\n') 
         
         self.send_response(302)
+        print('Redirecting to /blog')
         self.send_header('Location', './blog')
         self.end_headers()
            

@@ -1,29 +1,21 @@
-
 const messageForm = document.querySelector('.message-form');
+const submit = document.querySelector('#submit');
+const usernameInput = messageForm.elements['username'];
+const messageInput = messageForm.elements['message'];
 
-let messageState = {};
+function checkInputs() {
+    if (usernameInput.value.trim() && messageInput.value.trim()) {
+        submit.removeAttribute('disabled');
+        submit.textContent = 'Send'; 
+    } else {
+        submit.setAttribute('disabled', 'true');
+        submit.textContent = 'Please fill all fields';
+    }
+}
 
-messageForm.addEventListener('submit', onMessageFormSubmit);
+usernameInput.addEventListener('input', checkInputs);
+messageInput.addEventListener('input', checkInputs);
 
- function onMessageFormSubmit(event) {
-   event.preventDefault();
 
-   const usernameInput = messageForm.elements['username'];
-   const messageInput = messageForm.elements['message'];
-
-   if (!usernameInput.value.trim() || !messageInput.value.trim()) {
-     alert('Please fill all fields');
-     return;
-   }
-
-   const formData = new FormData(event.target);
-
-   for (const [key, value] of formData) {
-     messageState[key] = value.trim();
-   }
-
-   console.log('Sent message:', messageState);
-
-   messageForm.reset();
-   messageState = {};
- }
+submit.setAttribute('disabled', 'true');
+submit.textContent = 'Please fill all fields'; 
