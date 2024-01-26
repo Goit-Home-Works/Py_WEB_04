@@ -42,6 +42,7 @@
 # Docker
 
 docker build -t my-python-app .
+
 docker run -p 3005:3005 my-python-app
 
 docker run -d \
