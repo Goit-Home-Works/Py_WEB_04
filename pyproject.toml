@@ -4,7 +4,6 @@ version = "0.1.0"
 description = ""
 authors = ["siracencoserghei <siracencoserghei@gmail.com>"]
 readme = "README.md"
-packages = [{include = "py_web_04"}]
 
 [tool.poetry.dependencies]
 python = "^3.11"

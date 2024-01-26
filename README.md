@@ -44,5 +44,12 @@
 docker build -t my-python-app .
 docker run -p 3005:3005 my-python-app
 
-docker run -p 3005:3005 -v /home/sergio/Desktop/Py_WEB_04/storage:/app/storage my-python-app
+docker run -d \
+    --name HW-04 \
+    -p 3005:3005 \
+    -e SERVER_IP='127.0.0.1' \
+    -e SERVER_PORT=5005 \
+    -e BUFFER=1024 \
+    -v /home/sergio/Desktop/Py_WEB_04/storage:/app/storage \
+    my-python-app
 
