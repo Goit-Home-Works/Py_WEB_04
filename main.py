@@ -107,8 +107,8 @@ class HTTPHandler(BaseHTTPRequestHandler):
         html = template.render(blogs=r)
         self.wfile.write(html.encode())
 
-    def send_static(self, filename):
-        self.send_response(200)
+    def send_static(self, filename, status=200):
+        self.send_response(status)
         mime_type, *rest = mimetypes.guess_type(filename)
         if mime_type:
             self.send_header('Content-Type', mime_type)
