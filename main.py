@@ -1,4 +1,6 @@
 import json
+import os
+from dotenv import load_dotenv
 import datetime
 import logging
 import pathlib
@@ -14,10 +16,27 @@ from jinja2 import Environment, FileSystemLoader
 BASE_DIR = pathlib.Path()
 data_file_path = BASE_DIR.joinpath('storage/data.json')
 env = Environment(loader=FileSystemLoader('templates'))
-SERVER_IP = '127.0.0.1'
-SERVER_PORT = 5005
-BUFFER = 1024
 
+load_dotenv()
+
+SERVER_IP = os.getenv('SERVER_IP')
+# print('SERVER_IP: ',SERVER_IP)
+SERVER_PORT = int(os.getenv('SERVER_PORT'))
+# print(SERVER_PORT)
+BUFFER = int(os.getenv('BUFFER'))
+# print(BUFFER)
+
+def initialize_storage():
+    # Перевіряємо наявність каталогу та файлу data.json
+    storage_dir = BASE_DIR.joinpath('storage')
+    data_file_path_local = storage_dir.joinpath('data.json')  # Перейменуйте локальну змінну тут
+
+    if not storage_dir.exists():
+        storage_dir.mkdir()
+
+    if not data_file_path_local.exists():
+        with open(data_file_path_local, 'w', encoding='utf-8') as fd:
+            json.dump([], fd, ensure_ascii=False)
 
 def send_data_to_socket(body):
     client_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -123,9 +142,10 @@ def save_data(data):
 
 def run_socket_server(ip, port):
     server_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-    server = ip, port
-    server_socket.bind(server)
+    server = (ip, port)
+    # print('type: ', type(server))
     try:
+        server_socket.bind(server)
         while True:
             data, address = server_socket.recvfrom(BUFFER)
             save_data(data)
@@ -134,16 +154,13 @@ def run_socket_server(ip, port):
     finally:
         server_socket.close()
 
-
 if __name__ == '__main__':
     logging.basicConfig(level=logging.INFO, format="%(threadName)s %(message)s")
-    STORAGE_DIR = pathlib.Path().joinpath('storage')
-    FILE_STORAGE = STORAGE_DIR / 'data.json'
-    if not FILE_STORAGE.exists():
-        with open(FILE_STORAGE, 'w', encoding='utf-8') as fd:
-            json.dump({}, fd, ensure_ascii=False)
-
+    initialize_storage()
+    
     thread_server = Thread(target=run)
     thread_server.start()
-    thread_socket = Thread(target=run_socket_server(SERVER_IP, SERVER_PORT))
+    thread_socket = Thread(target=run_socket_server, args=(SERVER_IP, SERVER_PORT))
+
     thread_socket.start()
+    

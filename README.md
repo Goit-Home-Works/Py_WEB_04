@@ -36,3 +36,13 @@
 За допомогою механізму voluemes, зберігайте дані з storage/data.json не всередині контейнера
 # ПІДКАЗКА
 Щоб реалізувати механізм voluemes вам необхідно при старті програми перевіряти існування каталогу storage та файлу data.json. І якщо вони відсутні, тоді створити їх.
+
+
+
+# Docker
+
+docker build -t my-python-app .
+docker run -p 3005:3005 my-python-app
+
+docker run -p 3005:3005 -v /home/sergio/Desktop/Py_WEB_04/storage:/app/storage my-python-app
+
