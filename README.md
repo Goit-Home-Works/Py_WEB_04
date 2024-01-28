@@ -52,3 +52,4 @@ docker run -d \
     -v $(pwd)/storage:/app/storage \
     my-python-app
 
+<!-- pwd це print  working directory візьме поточну діректорію де  викликано команду -->
