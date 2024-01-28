@@ -29,7 +29,7 @@ BUFFER = int(os.getenv('BUFFER'))
 def initialize_storage():
     # Перевіряємо наявність каталогу та файлу data.json
     storage_dir = BASE_DIR.joinpath('storage')
-    data_file_path_local = storage_dir.joinpath('data.json')  # Перейменуйте локальну змінну тут
+    data_file_path_local = storage_dir.joinpath('data.json')
 
     if not storage_dir.exists():
         storage_dir.mkdir()
