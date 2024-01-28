@@ -49,6 +49,6 @@ docker run -d \
     -e SERVER_IP='127.0.0.1' \
     -e SERVER_PORT=5005 \
     -e BUFFER=1024 \
-    -v /home/sergio/Desktop/Py_WEB_04/storage:/app/storage \
+    -v $(pwd)/storage:/app/storage \
     my-python-app
 
